@@ -2,6 +2,8 @@ package com.lien.es.index;
 
 import com.lien.es.consts.EsConsts;
 import org.elasticsearch.action.admin.indices.create.CreateIndexRequest;
+import org.elasticsearch.action.admin.indices.delete.DeleteIndexRequest;
+import org.elasticsearch.action.admin.indices.get.GetIndexRequest;
 import org.elasticsearch.client.RestHighLevelClient;
 import org.elasticsearch.common.settings.Settings;
 
@@ -42,9 +44,9 @@ public class IndexHelper {
         Map<String, Object> title = new HashMap<>();
         title.put("type", "text");
         Map<String, Object> province = new HashMap<>();
-        title.put("type", "text");
+        province.put("type", "text");
         Map<String, Object> publishTime = new HashMap<>();
-        title.put("type", "date");
+        publishTime.put("type", "date");
 
         Map<String, Object> properties = new HashMap<>();
         properties.put("number", number);
@@ -55,7 +57,16 @@ public class IndexHelper {
 
         Map<String, Object> book = new HashMap<>();
         book.put("properties", properties);
-        jsonMap.put("book", book);
+        jsonMap.put("books", book);
         request.mapping(EsConsts.TYPE, jsonMap);
+    }
+
+    public void deleteIndex() throws IOException {
+        GetIndexRequest getIndexRequest = new GetIndexRequest();
+        getIndexRequest.indices(EsConsts.INDEX_NAME);
+        if(client.indices().exists(getIndexRequest)) {
+            DeleteIndexRequest deleteIndexRequest = new DeleteIndexRequest(EsConsts.INDEX_NAME);
+            client.indices().delete(deleteIndexRequest);
+        }
     }
 }

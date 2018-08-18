@@ -5,9 +5,9 @@ package com.lien.es.consts;
  */
 public class EsConsts {
 
-    public static final String INDEX_NAME = "book";
+    public static final String INDEX_NAME = "books";
 
-    public static final String TYPE = "book";
+    public static final String TYPE = "books";
 
     public static final Integer PORT = 9200;
 
