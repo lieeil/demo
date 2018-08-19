@@ -7,6 +7,7 @@ import com.lien.es.entity.Book;
 import org.elasticsearch.action.index.IndexRequest;
 import org.elasticsearch.action.index.IndexResponse;
 import org.elasticsearch.client.RestHighLevelClient;
+import org.elasticsearch.common.xcontent.XContentType;
 
 import java.io.IOException;
 
@@ -25,6 +26,7 @@ public class DocumentHelper {
         IndexRequest indexRequest = new IndexRequest(EsConsts.INDEX_NAME, EsConsts.TYPE, book.getNumber());
         ObjectMapper mapper = new ObjectMapper();
         byte[] json = mapper.writeValueAsBytes(book);
+        indexRequest.source(json, XContentType.JSON);
         client.index(indexRequest);
     }
 }
