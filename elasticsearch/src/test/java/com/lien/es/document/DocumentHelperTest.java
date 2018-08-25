@@ -4,6 +4,8 @@ package com.lien.es.document;
 import com.lien.es.client.rest.RestClientHelper;
 import com.lien.es.entity.Book;
 import org.elasticsearch.client.RestHighLevelClient;
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
 
 import java.io.IOException;
@@ -18,10 +20,21 @@ import static org.mockito.Mockito.*;
 public class DocumentHelperTest {
     public static String[] provinces = {"北京","河北","河南","上海","天津","辽宁","吉林","黑龙江","湖南","湖北"};
 
+    private DocumentHelper documentHelper;
+
+    @Before
+    public void init(){
+        RestHighLevelClient client = RestClientHelper.getClient();
+        documentHelper = new DocumentHelper(client);
+    }
+
+    @After
+    public void close() throws IOException {
+        documentHelper.close();
+    }
+
     @Test
     public void putDataTest() throws IOException {
-        RestHighLevelClient client = RestClientHelper.getClient();
-        DocumentHelper documentHelper = new DocumentHelper(client);
         List<Book> bookList = generateBooks(1000);
         for(int i = 0; i < bookList.size(); i++){
             documentHelper.putData(bookList.get(i));
@@ -44,6 +57,15 @@ public class DocumentHelperTest {
         }
         return bookList;
     }
+
+
+    @Test
+    public void testGetDataById() throws IOException {
+        String id = "1";
+        Book book = documentHelper.getData(id);
+        System.out.print(book.toString());
+    }
+
 
 
 }

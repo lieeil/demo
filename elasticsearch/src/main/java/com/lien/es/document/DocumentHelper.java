@@ -4,8 +4,11 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.lien.es.consts.EsConsts;
 import com.lien.es.entity.Book;
+import org.elasticsearch.action.get.GetRequest;
+import org.elasticsearch.action.get.GetResponse;
 import org.elasticsearch.action.index.IndexRequest;
 import org.elasticsearch.action.index.IndexResponse;
+import org.elasticsearch.action.update.UpdateRequest;
 import org.elasticsearch.client.RestHighLevelClient;
 import org.elasticsearch.common.xcontent.XContentType;
 
@@ -28,5 +31,24 @@ public class DocumentHelper {
         byte[] json = mapper.writeValueAsBytes(book);
         indexRequest.source(json, XContentType.JSON);
         client.index(indexRequest);
+    }
+
+
+    public void updateData(Book book){
+        UpdateRequest updateRequest = new UpdateRequest(EsConsts.INDEX_NAME, EsConsts.TYPE, book.getNumber());
+    }
+
+    public Book getData(String id) throws IOException {
+        GetRequest getRequest = new GetRequest(EsConsts.INDEX_NAME, EsConsts.TYPE, id);
+        GetResponse getResponse = client.get(getRequest);
+        byte[] sourceAsBytes = getResponse.getSourceAsBytes();
+        ObjectMapper mapper = new ObjectMapper();
+        Book book = mapper.readValue(sourceAsBytes, Book.class);
+        return book;
+    }
+
+
+    public void close() throws IOException {
+        this.client.close();
     }
 }

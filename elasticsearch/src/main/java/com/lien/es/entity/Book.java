@@ -16,4 +16,9 @@ public class Book {
     private String province;
 
     private Date publishTime;
+
+    public String toString(){
+        return this.number + " " + this.title + "" +
+                this.price + " " + this.province + " " + this.publishTime;
+    }
 }
