@@ -78,5 +78,11 @@ public class DocumentHelperTest {
         System.out.println(origin);
     }
 
+    @Test
+    public void testDelete() throws IOException{
+        String id = "1";
+        System.out.print(documentHelper.deleteData(id));
+    }
+
 
 }

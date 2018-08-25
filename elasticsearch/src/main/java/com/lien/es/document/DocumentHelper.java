@@ -4,6 +4,8 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.lien.es.consts.EsConsts;
 import com.lien.es.entity.Book;
+import org.elasticsearch.action.delete.DeleteRequest;
+import org.elasticsearch.action.delete.DeleteResponse;
 import org.elasticsearch.action.get.GetRequest;
 import org.elasticsearch.action.get.GetResponse;
 import org.elasticsearch.action.index.IndexRequest;
@@ -54,6 +56,13 @@ public class DocumentHelper {
         ObjectMapper mapper = new ObjectMapper();
         Book book = mapper.readValue(sourceAsBytes, Book.class);
         return book;
+    }
+
+    public String deleteData(String id) throws IOException{
+        DeleteRequest deleteRequest = new DeleteRequest(EsConsts.INDEX_NAME, EsConsts.TYPE,
+                id);
+        DeleteResponse deleteResponse =  client.delete(deleteRequest);
+        return deleteResponse.getResult().toString();
     }
 
 
