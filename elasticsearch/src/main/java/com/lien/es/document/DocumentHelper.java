@@ -11,6 +11,7 @@ import org.elasticsearch.action.index.IndexResponse;
 import org.elasticsearch.action.update.UpdateRequest;
 import org.elasticsearch.client.RestHighLevelClient;
 import org.elasticsearch.common.xcontent.XContentType;
+import org.elasticsearch.index.get.GetResult;
 
 import java.io.IOException;
 
@@ -26,16 +27,24 @@ public class DocumentHelper {
     }
 
     public void putData(Book book) throws IOException {
+        IndexRequest indexRequest = createIndexRequest(book);
+        client.index(indexRequest);
+    }
+
+    private IndexRequest createIndexRequest(Book book) throws JsonProcessingException {
         IndexRequest indexRequest = new IndexRequest(EsConsts.INDEX_NAME, EsConsts.TYPE, book.getNumber());
         ObjectMapper mapper = new ObjectMapper();
         byte[] json = mapper.writeValueAsBytes(book);
         indexRequest.source(json, XContentType.JSON);
-        client.index(indexRequest);
+        return indexRequest;
     }
 
 
-    public void updateData(Book book){
+    public void updateData(Book book) throws IOException {
         UpdateRequest updateRequest = new UpdateRequest(EsConsts.INDEX_NAME, EsConsts.TYPE, book.getNumber());
+        updateRequest.doc(createIndexRequest(book));
+        GetResult getResult =
+                client.update(updateRequest).getGetResult();
     }
 
     public Book getData(String id) throws IOException {

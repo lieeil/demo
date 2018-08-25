@@ -66,6 +66,17 @@ public class DocumentHelperTest {
         System.out.print(book.toString());
     }
 
+    @Test
+    public void testUpdateData() throws IOException{
+        String id = "1";
+        Book origin = documentHelper.getData(id);
+        System.out.println(origin.toString());
+        origin.setNumber(id);
+        origin.setTitle("新名称");
+        documentHelper.updateData(origin);
+        origin = documentHelper.getData(id);
+        System.out.println(origin);
+    }
 
 
 }
