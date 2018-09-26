@@ -7,7 +7,7 @@ import redis.clients.jedis.Jedis;
 /**
  * Created by lienquan on 2018/9/26.
  */
-class RedisClientTest {
+public class RedisClientTest {
 
     @Test
     public void testRedis() {
