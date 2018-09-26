@@ -12,6 +12,7 @@
         <module>elasticsearch</module>
         <module>design-pattern</module>
         <module>algorithm</module>
+        <module>redis</module>
     </modules>
 
     <build>
