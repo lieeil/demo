@@ -18,9 +18,9 @@ public class RedisHash {
 
     /**
      * 存储单一行数据
-     * @param mapName
-     * @param mapKey
-     * @param value
+     * @param mapName redis中map的名字
+     * @param mapKey  redis中此map的key
+     * @param value   redis中此map的值
      * @return
      */
     public Long putSingleMapValue(String mapName, String mapKey, String value){
