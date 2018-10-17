@@ -16,6 +16,7 @@
         <module>aviator</module>
         <module>lambda</module>
         <module>drools</module>
+        <module>basic</module>
     </modules>
 
     <build>
