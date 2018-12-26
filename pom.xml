@@ -17,6 +17,7 @@
         <module>lambda</module>
         <module>drools</module>
         <module>basic</module>
+        <module>netty</module>
     </modules>
 
     <build>
