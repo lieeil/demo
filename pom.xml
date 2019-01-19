@@ -18,6 +18,7 @@
         <module>drools</module>
         <module>basic</module>
         <module>netty</module>
+        <module>gc</module>
     </modules>
 
     <build>
