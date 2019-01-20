@@ -26,8 +26,8 @@ public class HeapSort extends Sort {
 
     /**
      * 节点下移操作
-     * @param parentIndex
-     * @param lastIndex
+     * @param parentIndex 下移操作的根下标
+     * @param lastIndex 最后元素的下标
      */
     private void shiftDown(int parentIndex, int lastIndex){
         while(parentIndex <= lastIndex && 2*parentIndex + 1 <= lastIndex){
@@ -59,7 +59,12 @@ public class HeapSort extends Sort {
     public static void main(String[] args){
         HeapSort sort = new HeapSort();
         Integer[] items = {99,3009,45,34985,12,45,67,1,234,56,8890,7864};
+        Integer[] items2 = {20,50,20,40,70,10,80,30,60};
         sort.setItems(items);
+        sort.sort();
+        sort.printItems();
+        System.out.println();
+        sort.setItems(items2);
         sort.sort();
         sort.printItems();
     }
