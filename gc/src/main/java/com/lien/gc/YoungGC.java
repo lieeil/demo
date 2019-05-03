@@ -8,15 +8,14 @@ package com.lien.gc;
 public class YoungGC {
 
     public static void main(String[] args) throws InterruptedException {
-        YoungGC youngGC = new YoungGC();
-        for(;;){
-            youngGC.allocateMemory();
-            Thread.sleep(5000);
-        }
-    }
+//        byte[] bytes = new byte[4*1024*1024];
 
-    private void allocateMemory(){
-        byte[] bytes = new byte[8*1024*1024];
+//        System.out.println("123");
+//        Thread.sleep(1000000);
+//        YoungGC youngGC = new YoungGC();
+        for(;;){
+
+        }
     }
 
 }

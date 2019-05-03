@@ -30,8 +30,8 @@ public class IndexHelper {
     }
 
     public void buildSetting(CreateIndexRequest request){
-        request.settings(Settings.builder().put("index.number_of_shards",3)
-        .put("index.number_of_replicas",2));
+        request.settings(Settings.builder().put("index.number_of_shards",1)
+        .put("index.number_of_replicas",0));
     }
 
     public void buildIndexMapping(CreateIndexRequest request){

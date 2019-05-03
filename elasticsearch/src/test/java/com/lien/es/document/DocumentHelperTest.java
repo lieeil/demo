@@ -35,7 +35,7 @@ public class DocumentHelperTest {
 
     @Test
     public void putDataTest() throws IOException {
-        List<Book> bookList = generateBooks(1000);
+        List<Book> bookList = generateBooks(10000);
         for(int i = 0; i < bookList.size(); i++){
             documentHelper.putData(bookList.get(i));
         }
