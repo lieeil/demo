@@ -8,13 +8,10 @@ package com.lien.gc;
 public class YoungGC {
 
     public static void main(String[] args) throws InterruptedException {
-//        byte[] bytes = new byte[4*1024*1024];
-
-//        System.out.println("123");
-//        Thread.sleep(1000000);
-//        YoungGC youngGC = new YoungGC();
+        byte[] bytes = new byte[4*1024*1024];
         for(;;){
-
+            Thread.sleep(500);
+            bytes = new byte[4*1024*1024];
         }
     }
 
