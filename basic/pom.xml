@@ -11,6 +11,13 @@
 
     <artifactId>basic</artifactId>
     <version>1.0-SNAPSHOT</version>
+    <dependencies>
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>23.0</version>
+        </dependency>
+    </dependencies>
 
     <!--<dependencies>-->
         <!--<dependency>-->

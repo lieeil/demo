@@ -15,6 +15,12 @@ public class SelectionSortTest {
         selectionSort.setItems(items);
         selectionSort.sort();
         selectionSort.printItems();
+        System.out.println();
+        InsertSort insertSort = new InsertSort();
+        Integer[] items2 = {3339,499,908,2,456,7,543,-19,0,0,345};
+        insertSort.setItems(items);
+        insertSort.sort();
+        insertSort.printItems();
     }
 
 }
