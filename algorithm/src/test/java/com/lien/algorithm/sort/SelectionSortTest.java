@@ -18,9 +18,16 @@ public class SelectionSortTest {
         System.out.println();
         InsertSort insertSort = new InsertSort();
         Integer[] items2 = {3339,499,908,2,456,7,543,-19,0,0,345};
-        insertSort.setItems(items);
+        insertSort.setItems(items2);
         insertSort.sort();
         insertSort.printItems();
+
+        System.out.println();
+        Sort bubbleSort = new BubbleSort();
+        Integer[] items3 = {3339,499,908,2,456,7,543,-19,0,0,345};
+        bubbleSort.setItems(items3);
+        bubbleSort.sort();
+        bubbleSort.printItems();
     }
 
 }
